@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 
 import 'guess_appbar.dart';
@@ -36,6 +37,22 @@ class _GuessPageState extends State<GuessPage> {
         _isBig = null;
       });
       _guess = !_guess;
+
+      // TODO
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'Success!',
+          message: '猜对了',
+          contentType: ContentType.success,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
     } else {
       setState(() {
         _isBig = guess > _num;
